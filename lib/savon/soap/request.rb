@@ -56,7 +56,8 @@ module Savon
         end
 
         http.headers["Content-Type"] = CONTENT_TYPE[soap.version]
-	if soap.version.egl?(2)
+	if soap.version.eql?(2)
+	  puts "Version 2 so adding action to content-type"
           http.headers["Content-Type"] << %{;action="#{soap.action}"}
         else
          http.headers["SOAPAction"] = %{"#{soap.action}"}
